@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <table>
+        <name>external_application</name>
+        <column>
+            <name>id</name>
+            <type>int</type>
+            <null>NO</null>
+            <autoincrement>YES</autoincrement>
+        </column>
+        <column>
+            <name>id_user</name>
+            <type>int</type>
+            <null>yes</null>
+        </column>
+        <column>
+            <name>name</name>
+            <type>text</type>
+            <null>no</null>
+        </column>
+        <index>
+            <type>PRIMARY</type>
+            <element>id</element>
+        </index>
+        <index>
+            <type>INDEX</type>
+            <element>id_user</element>
+        </index>
+    </table>
+</root>

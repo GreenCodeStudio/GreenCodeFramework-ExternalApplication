@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <node name="ExternalApplication">
+        <node name="id">
+            <value lang="en">id</value>
+        </node>
+        <node name="name">
+            <value lang="en">Name</value>
+            <value lang="pl">Nazwa</value>
+        </node>
+    </node>
+    <node name="ExternalApplicationList">
+        <node name="header">
+            <value lang="en">Owned external applications</value>
+            <value lang="pl">Posiadane aplikacje zewnętrzne</value>
+        </node>
+    </node>
+</root>
