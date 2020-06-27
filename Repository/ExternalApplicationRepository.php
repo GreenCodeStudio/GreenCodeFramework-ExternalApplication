@@ -2,7 +2,7 @@
 
 namespace ExternalApplication\Repository;
 
-use Core\DB;
+use Core\Database\DB;
 
 
 class ExternalApplicationRepository extends \Core\Repository
