@@ -10,7 +10,7 @@ export class index {
         const container = page.querySelector('.ExternalApplicationsList');
         let datasource = new DatasourceAjax('ExternalApplication', 'getTable', ['ExternalApplication', 'ExternalApplication']);
         let objectsList = new ObjectsList(datasource);
-        objectsList.columns = [{name: "Nazwa", content: row => row.name}];
+        objectsList.columns = [{name: "Nazwa", content: row => row.name, sortName: 'name'}];
         objectsList.generateActions = (rows) => {
             if (rows.length == 1) {
                 return [{name: TCommonBase("edit"), icon: 'edit', href: "/ExternalApplication/edit/" + rows[0].id}];
