@@ -2,14 +2,24 @@ import {FormManager} from "../../../Core/js/form";
 import {AjaxTask} from "../../../Core/js/ajaxTask";
 import {pageManager} from "../../../Core/js/pageManager";
 import {DatasourceAjax} from "../../../Core/js/datasourceAjax";
-import {TableManager} from "../../../Core/js/table";
+import {ObjectsList} from "../../../Core/js/ObjectsList/objectsList";
+import {t as TCommonBase} from "../../../CommonBase/i18n.xml";
 
 export class index {
     constructor(page, data) {
-        const table = page.querySelector('.dataTable');
+        const container = page.querySelector('.ExternalApplicationsList');
         let datasource = new DatasourceAjax('ExternalApplication', 'getTable', ['ExternalApplication', 'ExternalApplication']);
-        table.datatable = new TableManager(table, datasource);
-        table.datatable.refresh();
+        let objectsList = new ObjectsList(datasource);
+        objectsList.columns = [{name: "Nazwa", content: row => row.name}];
+        objectsList.generateActions = (rows) => {
+            if (rows.length == 1) {
+                return [{name: TCommonBase("edit"), icon: 'edit', href: "/ExternalApplication/edit/" + rows[0].id}];
+            } else {
+                return [];
+            }
+        }
+        container.append(objectsList);
+        objectsList.refresh();
     }
 }
 
@@ -25,10 +35,11 @@ export class edit {
         }
     }
 }
+
 export class add {
     constructor(page, data) {
         let form = new FormManager(page.querySelector('form'));
-        if(data && data.selects)
+        if (data && data.selects)
             form.loadSelects(data.selects);
 
         form.submit = async newData => {

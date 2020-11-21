@@ -6,21 +6,7 @@
         <header>
             <h1><?= t("ExternalApplication.ExternalApplicationList.header") ?></h1>
         </header>
-        <div class="dataTableContainer">
-            <table class="dataTable" data-controller="ExternalApplication" data-method="getTable"
-                   data-web-socket-path="ExternalApplication/ExternalApplication">
-                <thead>
-                <tr>
-                    <th data-value="name" data-sortable><?= t("ExternalApplication.ExternalApplication.name") ?></th>
-                    <th class="tableActions"><?= t("CommonBase.actions") ?>
-                        <div class="tableCopy">
-                            <a href="/ExternalApplication/edit" class="button" title="<?= t("CommonBase.edit") ?>"><span
-                                        class="icon-edit"></span></a>
-                        </div>
-                    </th>
-                </tr>
-                </thead>
-            </table>
+        <div class="ExternalApplicationsList">
         </div>
     </section>
 </div>
