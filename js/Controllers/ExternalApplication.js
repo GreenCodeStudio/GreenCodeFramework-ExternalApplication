@@ -11,12 +11,24 @@ export class index {
         let datasource = new DatasourceAjax('ExternalApplication', 'getTable', ['ExternalApplication', 'ExternalApplication']);
         let objectsList = new ObjectsList(datasource);
         objectsList.columns = [{name: "Nazwa", content: row => row.name, sortName: 'name'}];
-        objectsList.generateActions = (rows) => {
+        objectsList.generateActions = (rows, mode) => {
+            let ret = [];
             if (rows.length == 1) {
-                return [{name: TCommonBase("edit"), icon: 'edit', href: "/ExternalApplication/edit/" + rows[0].id}];
-            } else {
-                return [];
+                ret.push({
+                    name: TCommonBase("edit"),
+                    icon: 'icon-edit',
+                    href: "/ExternalApplication/edit/" + rows[0].id,
+                    main:true
+                });
             }
+            if (mode != 'row') {
+                ret.push({
+                    name: TCommonBase("editInNewTab"), icon: 'icon-edit', showInTable: false, command() {
+                        rows.forEach(x => window.open("/ExternalApplication/edit/" + x.id))
+                    }
+                });
+            }
+            return ret;
         }
         container.append(objectsList);
         objectsList.refresh();
