@@ -18,7 +18,7 @@ export class index {
                     name: TCommonBase("edit"),
                     icon: 'icon-edit',
                     href: "/ExternalApplication/edit/" + rows[0].id,
-                    main:true
+                    main: true
                 });
             }
             if (mode != 'row') {
