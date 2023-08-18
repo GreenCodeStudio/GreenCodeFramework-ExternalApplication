@@ -4,6 +4,8 @@ import {pageManager} from "../../../Core/js/pageManager";
 import {DatasourceAjax} from "../../../Core/js/datasourceAjax";
 import {ObjectsList} from "../../../Core/js/ObjectsList/objectsList";
 import {t as TCommonBase} from "../../../CommonBase/i18n.xml";
+import {TaskNotification} from "../../../Notifications/js/TaskNotification";
+import {Ajax} from "../../../Core/js/ajax";
 
 export class index {
     constructor(page, data) {
@@ -42,7 +44,9 @@ export class edit {
         form.load(data.ExternalApplication);
 
         form.submit = async newData => {
-            await AjaxTask.startNewTask('ExternalApplication', 'update', newData);
+            await TaskNotification.Create(async () => {
+                await Ajax.ExternalApplication.update(newData);
+            }, "Zapisywanie", "Zapisano");
             pageManager.goto('/ExternalApplication');
         }
     }
@@ -55,7 +59,9 @@ export class add {
             form.loadSelects(data.selects);
 
         form.submit = async newData => {
-            await AjaxTask.startNewTask('ExternalApplication', 'insert', newData);
+            await TaskNotification.Create(async () => {
+                await Ajax.ExternalApplication.insert(newData);
+            }, "Zapisywanie", "Zapisano");
             pageManager.goto('/ExternalApplication');
         }
     }

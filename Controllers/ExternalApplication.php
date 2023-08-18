@@ -22,8 +22,8 @@ class ExternalApplication extends \Common\PageStandardController
     function edit(int $id)
     {
         $this->will('ExternalApplication', 'edit');
-        $this->addView('ExternalApplication', 'ExternalApplicationEdit', ['type' => 'edit']);
-        $this->pushBreadcrumb(['title' => 'ExternalApplication', 'url' => '/ExternalApplication']);
+        $permissionsStructure = Permissions::readStructure();
+        $this->addView('ExternalApplication', 'ExternalApplicationEdit', ['type' => 'edit', 'permissionsStructure' => $permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'Edycja', 'url' => '/ExternalApplication/edit/'.$id]);
     }
 
