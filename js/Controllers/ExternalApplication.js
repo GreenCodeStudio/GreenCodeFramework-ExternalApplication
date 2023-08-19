@@ -22,6 +22,13 @@ export class index {
                     href: "/ExternalApplication/edit/" + rows[0].id,
                     main: true
                 });
+                if(rows[0].token)
+                ret.push({
+                    name: 'Swagger',
+                    icon: 'icon-show',
+                    href: "/ApiDocs/?key=" + rows[0].token,
+                    main: true
+                });
             }
             if (mode != 'row') {
                 ret.push({

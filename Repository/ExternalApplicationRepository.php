@@ -24,7 +24,7 @@ class ExternalApplicationRepository extends \Core\Repository
         $limit = (int)$options->limit;
         $sqlOrder = $this->getOrderSQL($options);
         $idUser = \Authorization\Authorization::getUserId();
-        $rows = DB::get("SELECT * FROM external_application WHERE id_user = ? $sqlOrder LIMIT $start,$limit", [$idUser]);
+        $rows = DB::get("SELECT *, (SELECT token FROM external_application_token eat WHERE eat.id_external_application = ea.id LIMIT 1) as token FROM external_application ea WHERE id_user = ? $sqlOrder LIMIT $start,$limit", [$idUser]);
         $total = DB::get("SELECT count(*) as count FROM external_application WHERE id_user = ?", [$idUser])[0]->count;
         return ['rows' => $rows, 'total' => $total];
     }
