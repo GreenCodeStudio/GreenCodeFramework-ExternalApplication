@@ -3,6 +3,7 @@
 namespace ExternalApplication\Repository;
 
 use Core\Database\DB;
+use Exception;
 
 
 class ExternalApplicationRepository extends \Core\Repository
