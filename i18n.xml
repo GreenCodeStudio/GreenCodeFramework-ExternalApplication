@@ -14,5 +14,19 @@
             <value lang="en">Owned external applications</value>
             <value lang="pl">Posiadane aplikacje zewnętrzne</value>
         </node>
+        <node name="description">
+            <value lang="pl">Aplikacje mające dostęp do API</value>
+            <value lang="en">Applications having access to API</value>
+        </node>
+    </node>
+    <node name="ExternalApplicationToken">
+        <node name="header">
+            <value lang="en">Tokens</value>
+            <value lang="pl">Tokeny</value>
+        </node>
+        <node name="token">
+            <value lang="en">Token</value>
+            <value lang="pl">Token</value>
+        </node>
     </node>
 </root>

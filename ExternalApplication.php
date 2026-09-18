@@ -40,7 +40,14 @@ class ExternalApplication extends \Core\BussinesLogic
         $filtered = $this->filterData($data);
         $filtered['id_user'] = Authorization::getUserId();
         $id = $this->defaultDB->insert($filtered);
+        $this->generateNewToken($id);
+
         \Core\WebSocket\Sender::sendToUsers(["ExternalApplication", "ExternalApplication", "Insert", $id]);
+    }
+    public function generateNewToken(int $applicationId)
+    {
+        $token = bin2hex(random_bytes(24));
+        $this->defaultDB->insertToken(['token' => $token, 'id_external_application' => $applicationId]);
     }
 
 }

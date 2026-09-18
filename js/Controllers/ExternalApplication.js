@@ -17,6 +17,12 @@ export class index {
             let ret = [];
             if (rows.length == 1) {
                 ret.push({
+                    name: TCommonBase("show"),
+                    icon: 'icon-show',
+                    href: "/ExternalApplication/show/" + rows[0].id,
+                    main: true
+                });
+                ret.push({
                     name: TCommonBase("edit"),
                     icon: 'icon-edit',
                     href: "/ExternalApplication/edit/" + rows[0].id,

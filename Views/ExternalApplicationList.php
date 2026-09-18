@@ -5,6 +5,7 @@
     <section class="card" data-width="6">
         <header>
             <h1><?= t("ExternalApplication.ExternalApplicationList.header") ?></h1>
+            <p><?= t("ExternalApplication.ExternalApplicationList.description") ?></p>
         </header>
         <div class="ExternalApplicationsList">
         </div>

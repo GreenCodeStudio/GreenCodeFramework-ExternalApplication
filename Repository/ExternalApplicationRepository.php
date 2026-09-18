@@ -19,6 +19,15 @@ class ExternalApplicationRepository extends \Core\Repository
         return 'external_application';
     }
 
+    public function getById($id)
+    {
+        $item = DB::get("SELECT ea.*, (SELECT json_arrayagg(json_object('id', eat.id, 'token', eat.token)) FROM external_application_token eat WHERE eat.id_external_application = ea.id) as tokens FROM external_application ea WHERE ea.id = ?", [$id])[0] ?? null;
+        if ($item != null) {
+            $item->tokens = json_decode($item->tokens ?? '[]');
+        }
+        return $item;
+    }
+
     public function getDataTable($options)
     {
         $start = (int)$options->start;
@@ -52,6 +61,10 @@ class ExternalApplicationRepository extends \Core\Repository
         return DB::get("SELECT ea.*
 FROM external_application ea
     JOIN  external_application_token eat ON eat.id_external_application = ea.id
-    WHERE token = ?", [$token])[0]??null;
+    WHERE token = ?", [$token])[0] ?? null;
+    }
+    public function insertToken($data)
+    {
+        DB::insert('external_application_token', $data);
     }
 }

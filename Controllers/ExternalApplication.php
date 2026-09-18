@@ -12,7 +12,6 @@ class ExternalApplication extends \Common\PageStandardController
         $this->will('ExternalApplication', 'show');
         $this->addView('ExternalApplication', 'ExternalApplicationList');
         $this->pushBreadcrumb(['title' => 'ExternalApplication', 'url' => '/ExternalApplication']);
-
     }
 
     /**
@@ -43,9 +42,22 @@ class ExternalApplication extends \Common\PageStandardController
     function add()
     {
         $this->will('ExternalApplication', 'add');
-        $this->addView('ExternalApplication', 'ExternalApplicationEdit', ['type' => 'add']);
+        $permissionsStructure = Permissions::readStructure();
+        $this->addView('ExternalApplication', 'ExternalApplicationEdit', ['type' => 'add', 'permissionsStructure' => $permissionsStructure]);
         $this->pushBreadcrumb(['title' => 'ExternalApplication', 'url' => '/ExternalApplication']);
         $this->pushBreadcrumb(['title' => 'Dodaj', 'url' => '/ExternalApplication/add']);
     }
-    
+
+    function show(int $id)
+    {
+        $this->will('ExternalApplication', 'show');
+        $ExternalApplication = new \ExternalApplication\ExternalApplication();
+        $item = $ExternalApplication->getById($id);
+        if ($item == null)
+            throw new NotFoundException();
+        $this->addView('ExternalApplication', 'ExternalApplicationShow', ['item' => $item]);
+        $this->pushBreadcrumb(['title' => 'ExternalApplication', 'url' => '/ExternalApplication']);
+        $this->pushBreadcrumb(['title' => 'Pokaż', 'url' => '/ExternalApplication/show/'.$id]);
+    }
+
 }

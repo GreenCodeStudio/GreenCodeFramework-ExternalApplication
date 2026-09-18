@@ -1,0 +1,22 @@
+<div class="topBarButtons">
+    <a href=("/ExternalApplication/edit/":item.id) class="button action-edit"><span class="icon-edit"></span>{{t("CommonBase.edit")}}</a>
+        </div>
+<div class="grid">
+<section class="card action-show" data-width="6">
+    <div class="pseudoLabel">
+        <span>{{t("ExternalApplication.ExternalApplication.name")}}:</span>
+        <strong>{{item.name}}</strong>
+    </div>
+</section>
+<section class="card">
+    <header>
+        <h1>{{t("ExternalApplication.ExternalApplicationToken.header")}}</h1>
+    </header>
+    <:foreach collection=item.tokens item=token>
+        <div class="pseudoLabel">
+            <span>{{t("ExternalApplication.ExternalApplicationToken.token")}}:</span>
+            <strong>{{token.token}}</strong>
+        </div>
+    </:foreach>
+</section>
+</div>
