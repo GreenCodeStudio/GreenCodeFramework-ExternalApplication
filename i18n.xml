@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
+    <node name="menu">
+        <value lang="en">External applications</value>
+        <value lang="pl">Aplikacje zewnętrzne</value>
+    </node>
     <node name="ExternalApplication">
         <node name="id">
             <value lang="en">id</value>
